@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sonic Unleashed - Werehog Sonic
+* source:	https://sketchfab.com/3d-models/sonic-unleashed-werehog-sonic-9fd63049b4bf4d18bf43cd34121d0697
+* author:	blacktailsthefox (https://sketchfab.com/blacktailsthefox)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sonic Unleashed - Werehog Sonic" (https://sketchfab.com/3d-models/sonic-unleashed-werehog-sonic-9fd63049b4bf4d18bf43cd34121d0697) by blacktailsthefox (https://sketchfab.com/blacktailsthefox) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

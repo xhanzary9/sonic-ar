@@ -1,0 +1,11 @@
+Model Information:
+* title:	Jet Set Sonic
+* source:	https://sketchfab.com/3d-models/jet-set-sonic-80fd02f68bb1460d88ff8011771af3e5
+* author:	projectmgame (https://sketchfab.com/projectmgame)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Jet Set Sonic" (https://sketchfab.com/3d-models/jet-set-sonic-80fd02f68bb1460d88ff8011771af3e5) by projectmgame (https://sketchfab.com/projectmgame) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sonic AR</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+  <style>
+    body { margin: 0; font-family: sans-serif; text-align: center; }
+    #arContainer { display: none; width: 100%; height: 100vh; }
+    #openAR { padding: 1em 2em; font-size: 1.2em; margin-top: 50px; }
+  </style>
+</head>
+<body>
+  <h1>Sonic AR</h1>
+  <button id="openAR">Abrir Visor AR</button>
+
+  <div id="arContainer">
+    <a-scene embedded arjs="sourceType: webcam;" id="scene">
+      <!-- Personajes -->
+      <a-entity id="sonic" visible="false" gltf-model="url(jet_set_sonic/scene.gltf)" scale="0.5 0.5 0.5" position="0 0 -2"></a-entity>
+      <a-entity id="tails" visible="false" gltf-model="url(tails_-_sonic_free_riders/scene.gltf)" scale="0.5 0.5 0.5" position="0 0 -2"></a-entity>
+
+      <!-- Botón para tomar foto -->
+      <a-entity id="camButton" geometry="primitive: plane; height: 0.3; width: 1"
+        material="color: #FFD700" position="0 1 -1"
+        text="value: Tomar Foto; align: center; color: black">
+      </a-entity>
+    </a-scene>
+  </div>
+
+  <script>
+    const arContainer = document.getElementById('arContainer');
+    const openAR = document.getElementById('openAR');
+    const sonic = document.getElementById('sonic');
+    const tails = document.getElementById('tails');
+    const button = document.getElementById('camButton');
+
+    openAR.addEventListener('click', () => {
+      arContainer.style.display = 'block';
+    });
+
+    // === Setup para captura de QR ===
+    const video = document.createElement('video');
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    let scanning = false;
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+  .then(stream => {
+    console.log("Cámara activada ✅");
+    video.srcObject = stream;
+    video.setAttribute("playsinline", true);
+    video.play();
+    scanning = true;
+    requestAnimationFrame(tick);
+  })
+  .catch(err => console.error("Error al activar cámara:", err));
+
+function tick() {
+  if (!scanning) return;
+  if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageData.data, canvas.width, canvas.height, { inversionAttempts: "dontInvert" });
+    if (code) {
+      console.log("QR detectado:", code.data);
+      handleQR(code.data);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+
+function handleQR(data) {
+  sonic.setAttribute('visible', 'false');
+  tails.setAttribute('visible', 'false');
+
+  if (data.toUpperCase() === 'SONIC') {
+    sonic.setAttribute('visible', 'true');
+    console.log("Sonic mostrado ✅");
+  } else if (data.toUpperCase() === 'TAILS') {
+    tails.setAttribute('visible', 'true');
+    console.log("Tails mostrado ✅");
+  }
+}
+
+    // === Botón para tomar foto ===
+    button.addEventListener('click', () => {
+      const scene = document.querySelector('a-scene');
+      scene.components.screenshot.capture('perspective'); // Descarga automática
+    });
+  </script>
+</body>
+</html>
