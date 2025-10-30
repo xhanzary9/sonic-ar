@@ -16,15 +16,16 @@
 
     #birthdayFrame {
       position: absolute;
-      top: 0;
+      top: 13vh;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 80%;
       pointer-events: none;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 5;
+      transform: scale(1.0,1.4);
     }
 
     #birthdayFrame img {
@@ -135,7 +136,7 @@
     const cameraEntity = document.querySelector('[camera]');
     function updateCharacterPosition() {
       if (sonic.getAttribute('visible') === true) {
-        sonic.object3D.position.set(cameraEntity.object3D.position.x, 0.5, cameraEntity.object3D.position.z - 6);
+        sonic.object3D.position.set(cameraEntity.object3D.position.x + 0.5, -0.3, cameraEntity.object3D.position.z - 6);
       }
       if (tails.getAttribute('visible') === true) {
         tails.object3D.position.set(cameraEntity.object3D.position.x, -1.5, cameraEntity.object3D.position.z - 8);
